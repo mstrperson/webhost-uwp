@@ -1,0 +1,1714 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebhostAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebhostAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:WebhostAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:WebhostAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,WebhostAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,WebhostAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:WebhostAPI.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},WebhostAPI.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:WebhostAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:WebhostAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(WebhostAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:WebhostAPI.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,WebhostAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:WebhostAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:WebhostAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebhostAPI.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebhostAPI.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:WebhostAPI.Controllers.AttendanceController">
+            <summary>
+            Access to Attendance Records.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Controllers.AttendanceController.PutMyAttendance(System.Int32,System.Collections.Generic.List{WebhostAPI.RequestHandlers.AttendanceInfo})">
+            <summary>
+            Submit attendance for a given section.  Request Content must include a List of <see cref="T:WebhostAPI.RequestHandlers.AttendanceInfo"/>.
+            </summary>
+            <param name="section_id">Id for the section that you are submitting attendance for.</param>
+            <param name="content">List of attendance markings.</param>
+            <returns>
+            If the section Id is invalid, returns <see cref="F:System.Net.HttpStatusCode.BadRequest">BadRequest</see> with an <see cref="T:System.ArgumentException"/>.
+            If The currently authorized teacher is not a teacher for this section, then returns <see cref="F:System.Net.HttpStatusCode.NotAcceptable"/> with an <see cref="T:System.InvalidOperationException"/>.
+            
+            Otherwise, returns <see cref="F:System.Net.HttpStatusCode.OK">OK</see> with the List of completed <see cref="T:WebhostAPI.RequestHandlers.AttendanceInfo">AttendanceInfo</see> objects filled out.
+            </returns>
+            <example>
+            POST api/self/sections/278/attendance
+            CONTENT-TYPE text/json
+            CONTENT
+            {
+                [
+                    {
+                        "StudentId":"17482",
+                        "SectionId":"278",
+                        "Marking":"Present",
+                        "Date":"2016-12-2"
+                    },
+                    {
+                        "StudentId":"28192",
+                        "SectionId":"278",
+                        "Marking":"Present",
+                        "Date":"2016-12-2"
+                    },
+                    {
+                        "StudentId":"12738",
+                        "SectionId":"278",
+                        "Marking":"Late",
+                        "Date":"2016-12-2"
+                    }
+                ]
+            }
+            </example>
+        </member>
+        <member name="M:WebhostAPI.Controllers.AttendanceController.GetAttendances(System.Int32,System.Int64)">
+            <summary>
+            Get the list of <see cref="T:WebhostAPI.RequestHandlers.AttendanceInfo">AttendanceInfo</see> markings for a given Date.
+            </summary>
+            <param name="section_id"><see cref="P:WebhostAPI.RequestHandlers.SectionInfo.Id">Id</see> for the object</param>
+            <param name="datebinary">Optionally, you can provide a Date object in the query string to say what Date to pull data for.</param>
+            <returns>
+            Gets the List of <see cref="T:WebhostAPI.RequestHandlers.AttendanceInfo">AttendanceInfo</see> as json.
+            </returns>
+            <see cref="T:WebhostAPI.RequestHandlers.AttendanceInfo"/>
+        </member>
+        <member name="M:WebhostAPI.Controllers.AttendanceController.GetStudentAttendance">
+            <summary>
+            Students can access their AttendanceWeek data.
+            </summary>
+            <returns>
+            Gets a List of <see cref="T:WebhostAPI.RequestHandlers.AttendanceInfo">Attendance Info</see> with all the attendance submitted for the authorized student.
+            </returns>
+        </member>
+        <member name="T:WebhostAPI.Controllers.CommentAdminController">
+            <summary>
+            Comment Controlls for administrators.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentAdminController.GetCommentHeaderForTerm(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get comment header for a class for a particular term.
+            </summary>
+            <param name="section_id">Section.Index</param>
+            <param name="term_id">Term.Index</param>
+            <param name="includeComments">Include all student comments?</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentAdminController.PutUpdatedCommentHeader(System.Int32,System.Int32,System.String)">
+            <summary>
+            Forcibly update a teacher's comment header.
+            Expects plaintext Base64 encoded HTML as the body of the request.
+            </summary>
+            <param name="section_id">Section.Index</param>
+            <param name="term_id">Term.Index</param>
+            <param name="content">Base 64 encoded content.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentAdminController.PostNewCommentHeader(System.Int32,System.Int32)">
+            <summary>
+            Create a new comment header for a teacher.
+            </summary>
+            <param name="section_id"></param>
+            <param name="term_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentAdminController.GetPdfComment(System.Int32)">
+            <summary>
+            Get Pdf Data for a comment letter.
+            Responds with application/pdf formatted raw data.
+            </summary>
+            <param name="id">StudentComment.id</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostAPI.Controllers.CommentsController">
+            <summary>
+            Comment Letters Access for Teachers.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.GetCurrentCommentHeaders(System.Boolean)">
+            <summary>
+            Get current user's comment headers for the current term.
+            
+            </summary>
+            <param name="includeComments"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.GetCommentHeaderForSection(System.Int32)">
+            <summary>
+            Get the current comment header for a section that belongs to you.
+            </summary>
+            <param name="section_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.CreateNewCommentHeader(System.Int32,System.String)">
+            <summary>
+            Create a new comment header for a section that belongs to you.
+            Responds with Conflict if there is a database error (possibly multiple paralel requests)
+            Responds with NoContent if the section already has a header for this term.
+            
+            Expects plaintext Base64 encoded HTML as the content.
+            </summary>
+            <param name="section_id"></param>
+            <param name="content">Base 64 encoded HTML content.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.PutUpdatedCommentHeader(System.Int32,System.String,System.String)">
+            <summary>
+            Update the content of the comment header for a section that belongs to you.
+            Responds with Conflict if there is a database error (possibly multiple paralel requests)
+            Responds with NoContent if the section does not have a header for this term.
+            
+            Expects plaintext Base64 encoded HTML as the content.
+            </summary>
+            <param name="section_id"></param>
+            <param name="content">Base 64 encoded HTML content.</param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.GetStudentComment(System.Int32,System.Int32)">
+            <summary>
+            Get the student comment for a section.
+            </summary>
+            <param name="section_id"></param>
+            <param name="student_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.CreateStudentComment(System.Int32,System.Int32,WebhostAPI.RequestHandlers.StudentCommentInfo)">
+            <summary>
+            Create a new student comment.
+            </summary>
+            <param name="section_id"></param>
+            <param name="student_id"></param>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.PutUpdatedStudentComment(System.Int32,System.Int32,WebhostAPI.RequestHandlers.StudentCommentInfo,System.String)">
+            <summary>
+            Update an existing student comment.
+            </summary>
+            <param name="section_id"></param>
+            <param name="student_id"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.CommentsController.GetCommentsForTerm(System.Int32,System.Int32)">
+            <summary>
+            Get Student Comments for a particular term.
+            </summary>
+            <param name="term_id"></param>
+            <param name="student_id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostAPI.Controllers.UserController">
+            <summary>
+            get information about a user.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Controllers.UserController.PostAuthentication">
+            <summary>
+            Pass the the following information in json to the Body of the request.
+            
+            {
+                "EncodedCredential":"<Base64EncodedData/>"
+            }
+            
+            where the data is a base64 encoded version of the user's credentials
+            
+            
+            </summary>
+            
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.UserController.GetSelf">
+            <summary>
+            Who am I?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.UserController.GetAdvisees(System.Boolean)">
+            <summary>
+            Get's the current teacher's list of advisees.
+            </summary>
+            <param name="active"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.UserController.GetOther(System.Int32)">
+            <summary>
+            Administrator access to other teachers' information.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.UserController.GetOtherAdvisees(System.Int32,System.Boolean)">
+            <summary>
+            Administrative access to another teacher's advisee list.
+            </summary>
+            <param name="id"></param>
+            <param name="active"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostAPI.Controllers.UtilityController.SingleValueString">
+            <summary>
+            Simple json wrapper for a single string value.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.Controllers.UtilityController.SingleValueString.value">
+            <summary>
+            The single string value.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Controllers.UtilityController.PostBase64String(WebhostAPI.Controllers.UtilityController.SingleValueString)">
+            <summary>
+            Takes the raw data that is passed as a json object as follows,
+            and returns it as a base64 encoded string.
+            
+            Data should be of the form
+            
+            { "value" : "Some string value.  Character Encoding does not matter." }
+            
+            </summary>
+            <param name="data">String to be encoded into base64</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostAPI.Controllers.WeekendSignupController">
+            <summary>
+            Weekend Singups for Students.  Access this Weekend's activities and post your sign-ups.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Controllers.WeekendSignupController.GetWeekendActivities(System.Boolean)">
+            <summary>
+            Get this weekend's list of activities.
+            
+            </summary>
+            <param name="listStudents">Show who has already signed up for this trip</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.WeekendSignupController.GetWeekendActivity(System.Int32,System.Boolean)">
+            <summary>
+            Get info on a specific weekend activity.
+            </summary>
+            <param name="id">Activity Id (primary key in the WebhostDatabase).</param>
+            <param name="listStudents">Show who has already signed up.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.WeekendSignupController.GetStudentSignupInfo(System.Int32,System.Int32)">
+            <summary>
+            Info about a student's signup for a particular activity.
+            </summary>
+            <param name="activity_id"></param>
+            <param name="student_id"></param>
+            <returns>StudentSignupInfo</returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.WeekendSignupController.PutSignupRequest(System.Int32,System.Boolean)">
+            <summary>
+            Update or Create a new weekend signup for the authorized student.
+            </summary>
+            <param name="activity_id">the Activity ID of the activity you want to sign up for.</param>
+            <param name="isRescend">Pass true if you are removing yourself from the signp.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.Controllers.WeekendSignupController.PutOverrideSignup(System.Int32,System.Int32,WebhostAPI.RequestHandlers.StudentSignupInfo)">
+            <summary>
+            Administrators and Teachers may override a student sign-up
+            </summary>
+            <param name="activity_id"></param>
+            <param name="student_id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostAPI.Filters.WebhostAuthenticationFilterAttribute">
+            <summary>
+            The framework for this class was taken verbatim from:
+            https://github.com/mbenford/WebApi-AuthenticationFilter/blob/master/WebApi.AuthenticationFilter/AuthenticationFilterAttribute.cs
+            
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.Filters.WebhostAuthenticationFilterAttribute.OnAuthenticationAsync(System.Web.Mvc.Filters.AuthenticationContext,System.Threading.CancellationToken)">
+            <summary>
+            Authenticates the request asynchronously.
+            </summary>
+            <param name="context">The authentication context.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+            <returns>A Task that will perform the authentication challenge.</returns>
+        </member>
+        <member name="M:WebhostAPI.Filters.WebhostAuthenticationFilterAttribute.OnAuthentication(System.Web.Mvc.Filters.AuthenticationContext)">
+            <summary>
+            Authenticates the request.
+            </summary>
+            <param name="context">The authentication context.</param>
+        </member>
+        <member name="M:WebhostAPI.Filters.WebhostAuthenticationFilterAttribute.OnAuthenticationChallengeAsync(System.Web.Mvc.Filters.AuthenticationChallengeContext,System.Threading.CancellationToken)">
+            <summary>
+            Adds an authentication challenge to the inner IHttpActionResult asynchronously.
+            </summary>
+            <param name="context">The authentication challenge context.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+            <returns>A Task that will perform the authentication challenge.</returns>
+        </member>
+        <member name="M:WebhostAPI.Filters.WebhostAuthenticationFilterAttribute.OnAuthenticationChallenge(System.Web.Mvc.Filters.AuthenticationChallengeContext)">
+            <summary>
+            Adds an authentication challenge to the inner IHttpActionResult.
+            </summary>
+            <param name="context">The authentication challenge context.</param>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.AttendanceInfo">
+            <summary>
+            Info about a given Attendance Marking in the Webhost Database.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.Id">
+            <summary>
+            Webhost Database Id field for this attendance marking.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.StudentId">
+            <summary>
+            Student Id for this attendance marking.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.SectionId">
+            <summary>
+            Section Id which this attendance marking is for.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.Marking">
+            <summary>
+            Present, Late, Cut or Excused.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.DateBinary">
+            <summary>
+            The Date that this attendance is for.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.Date">
+            <summary>
+            DateTime object for saving to the database.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.Notes">
+            <summary>
+            Additional Notes about this entry.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.EnteredBy">
+            <summary>
+            Who entered this attendance
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.Student">
+            <summary>
+            <see cref="T:WebhostAPI.RequestHandlers.StudentInfo"/> for whom this attendance was submitted.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AttendanceInfo.Section">
+            <summary>
+            <see cref="T:WebhostAPI.RequestHandlers.SectionInfo"/> for the Section that this was submitted for.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.AttendanceInfo.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Generate this given the <see cref="P:WebhostAPI.AttendanceMarking.id"/>.
+            </summary>
+            <param name="id"><see cref="P:WebhostAPI.AttendanceMarking.id"/></param>
+            <param name="fullDetails">Fills in all of the non-mandatory fields if true.  Otherwise, only provides the mandatory data.</param>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.AttendanceInfo.LookUpAttendanceMarking(System.String)">
+            <summary>
+            Look up the <see cref="P:WebhostAPI.GradeTableEntry.id"/> given the text value of <see cref="P:WebhostAPI.GradeTableEntry.Name"/>.
+            </summary>
+            <param name="name"><see cref="P:WebhostAPI.GradeTableEntry.Name"/></param>
+            <returns><see cref="P:WebhostAPI.GradeTableEntry.id"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if the provided Name is invalid.</exception>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.AuthenticationInfo">
+            <summary>
+            Authentication method.  This Datatype should never need to be instantiated on its own.
+            It is meant to be constructed by the json deserializer using data passed in the body of
+            and encrypted HttpWebRequest.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AuthenticationInfo.EncodedCredential">
+            <summary>
+            When this object is instantiated via the json deserializer,
+            The EncodedCredential is processed and throws InvalidOperationException based
+            on bad results:
+            "Invalid Credential" if the credential string is malformed.
+            "403" if the account is locked out.
+            "429" if too many requests in a short period of time.
+                This also triggers an email to the Webmaster.
+            "418" if the password is incorrect 5 times
+                this also triggers an account lockout which must be manually reset.
+            "401" if there is any sort of database error.
+            
+            If there are no errors, then this automatically populates the "Fingerprint" field
+            so that this object can be returned to the requestor.
+            
+            EncodedCredential should be the following format encoded into base64: 
+            "username:you;passwd:###########"
+            
+            where the ######### is your password encoded into base64.
+            
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.AuthenticationInfo.Fingerprint">
+            <summary>
+            Base64Encoded Unique fingerprint data used for authentication.
+            
+            This is generated from the Encoded Credentials and should not be passed in a post request.
+            Any data passed in this field will be ignored (or will potentially cause your request to be rejected.)
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.CommentHeaderInfo">
+            <summary>
+            Comment Header information packaged for JSON data transmission.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.Id">
+            <summary>
+            Webhost Database CommentHeader.id
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.SectionId">
+            <summary>
+            CommentHeader.SectionIndex
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.TermId">
+            <summary>
+            CommentHeader.TermId
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.SectionTitle">
+            <summary>
+            Section title pulled from the SectionInfo object.
+            e.g.  "[B-Block] AP Computer Science Principles"
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.Term">
+            <summary>
+            What Term is this Header for?
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.HtmlContent">
+            <summary>
+            HTML content encoded into a Base64String for clean data transmission.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.RtfContnet">
+            <summary>
+            If the comment is stored as Rich Text Format.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.StudentCommentIds">
+            <summary>
+            List of Webhost Database Id numbers for student Comments
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.CommentHeaderInfo.StudentComments">
+            <summary>
+            List of all the data associated with student comments connected to this header.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.CommentHeaderInfo.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initialize Info object.
+            </summary>
+            <param name="id"></param>
+            <param name="includeStudentCommentData"></param>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.Resources.DigitalSignatureImage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.SectionInfo">
+            <summary>
+            Information about Sections that is relevant to be passed over the API.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.Id">
+            <summary>
+            Webhost database Id field.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.Block">
+            <summary>
+            Section.Block.LongName
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.Course">
+            <summary>
+            Section.Course.Name
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.CourseId">
+            <summary>
+            Section.CourseIndex
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.StudentIds">
+            <summary>
+            List of Student Id's of students enrolled in this class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.Students">
+            <summary>
+            (Optional) List of detailed student information about members
+            of this class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.TeacherIds">
+            <summary>
+            List of employee Ids for teachers of this class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.SectionInfo.Teachers">
+            <summary>
+            (Optional) List of detailed employee information about
+            teachers of this class.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.SectionInfo.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initialize a SectionInfo object given the Section.Index
+            </summary>
+            <param name="id">Section.Index</param>
+            <param name="listDetailedRosters">Include detailed student and teacher info?</param>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.StudentCommentInfo">
+            <summary>
+            Information about Student individual comments for a class.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.Grades">
+            <summary>
+            Grade information for this comment letter.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.Id">
+            <summary>
+            Webhost Database Id field.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.StudentId">
+            <summary>
+            Comment.StudentId
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.Student">
+            <summary>
+            Information about the student.
+            when posting, only the Student ID number is required.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.HtmlContent">
+            <summary>
+            HTML content of the individual comment in Base64String format for clean data transmission.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.RtfContent">
+            <summary>
+            If the data is stored in Rich Text Format.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.HeaderId">
+            <summary>
+            Webhost Database ID number for the header paragraph that goes with this comment.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentCommentInfo.Header">
+            <summary>
+            Info on the Comment Header.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.StudentCommentInfo.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initialize a student comment.
+            </summary>
+            <param name="id"></param>
+            <param name="includeHeader"></param>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.GradeInfo">
+            <summary>
+            Info about grades for comments.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.GradeInfo.ExamGrade">
+            <summary>
+            The exam grade
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.GradeInfo.TrimesterGrade">
+            <summary>
+            Trimester Grade
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.GradeInfo.FinalGrade">
+            <summary>
+            Final Grade for the class.  Submit "Not Applicable" if needed.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.GradeInfo.EngagementGrade">
+            <summary>
+            EMI grade for the class.
+            </summary>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.StudentInfo">
+            <summary>
+            Student User Information.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentInfo.Advisor">
+            <summary>
+            Student's Advisor.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentInfo.GraduationYear">
+            <summary>
+            Student's Graduation Year.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.StudentInfo.#ctor(System.Byte[])">
+            <summary>
+            Initialize StudentInfo given their Authorization Fingerprint.
+            </summary>
+            <param name="fingerprint"></param>
+            <exception cref="T:System.AccessViolationException">Thrown when the provided fingerprint is invalid.</exception>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.StudentInfo.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Get Student Info given the student Id.
+            </summary>
+            <param name="studentId">Valid Student Id</param>
+            <param name="shortVersion">Omit some data.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the student Id is Invalid.</exception>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.WebhostUserInfo">
+            <summary>
+            Generic User Info.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WebhostUserInfo.UserName">
+            <summary>
+            User Name (without @dublinschool.org)
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WebhostUserInfo.FirstName">
+            <summary>
+            User's first name.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WebhostUserInfo.LastName">
+            <summary>
+            User's last name.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WebhostUserInfo.Email">
+            <summary>
+            Email address used for contacting the end user.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WebhostUserInfo.Groups">
+            <summary>
+            Groups that the user belongs to.
+            This is from Database.ApiGroups
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WebhostUserInfo.Id">
+            <summary>
+            User's Webhost Database ID field.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.WebhostUserInfo.IsTeacher">
+            <summary>
+            Is this user a Teacher?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.WebhostUserInfo.IsStudent">
+            <summary>
+            Is this user a Student?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.WebhostUserInfo.SendEmailToUser(System.String,System.String,WebhostAPI.RequestHandlers.WebhostUserInfo)">
+            <summary>
+            Send an email to this user from the supplied sender.
+            </summary>
+            <param name="subject">Email Subject</param>
+            <param name="message">Email message body</param>
+            <param name="sender">Who is sending the email?</param>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.WebhostUserInfo.GenerateNewFingerprint(System.Int32)">
+            <summary>
+            Generate a new Fingerprint of a given length.
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.TeacherInfo">
+            <summary>
+            Extension of base user class for Faculty.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.TeacherInfo.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initialize an instance of the abstract UserInfo class as a Faculty member given the ID number.
+            </summary>
+            <param name="id"></param>
+            <param name="fullDetails"></param>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.TeacherInfo.#ctor(System.Byte[],System.Boolean)">
+            <summary>
+            Get a Faculty's user details given their fingerprint.  Used for Authentication/Authorization.
+            </summary>
+            <param name="fingerprint"></param>
+            <param name="fullDetails"></param>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.WeekendActivityInfo">
+            <summary>
+            Information about a Weekend Activity.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.Id">
+            <summary>
+            Webhost Database WeekendActivity.id
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.Name">
+            <summary>
+            Activity Name.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.Description">
+            <summary>
+            (Optional) Activity description.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.DayAndTime">
+            <summary>
+            Day and Time that the trip is scheduled for.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.Students">
+            <summary>
+            Info about students who are signed up.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.IsOffCampus">
+            <summary>
+            Is the activity off campus?
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.MaxSignups">
+            <summary>
+            Maximum number of student signups.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.WeekendActivityInfo.Categories">
+            <summary>
+            List of categories for this trip.
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.WeekendActivityInfo.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Get information about a given weekend activity.
+            </summary>
+            <param name="id"></param>
+            <param name="listStudents"></param>
+        </member>
+        <member name="T:WebhostAPI.RequestHandlers.StudentSignupInfo">
+            <summary>
+            Information about a student's signup for an activity.
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentSignupInfo.ActivityId">
+            <summary>
+            What activity?
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentSignupInfo.Student">
+            <summary>
+            Who is signing up?
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentSignupInfo.IsRescended">
+            <summary>
+            Did they remove themselves from the list?
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentSignupInfo.IsBanned">
+            <summary>
+            Have they been banned?
+            </summary>
+        </member>
+        <member name="P:WebhostAPI.RequestHandlers.StudentSignupInfo.Timestamp">
+            <summary>
+            When was this updated?
+            </summary>
+        </member>
+        <member name="M:WebhostAPI.RequestHandlers.StudentSignupInfo.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initialize information about a student's signup.
+            </summary>
+            <param name="activity_id"></param>
+            <param name="student_id"></param>
+        </member>
+        <member name="M:WebhostMySQLConnection.Web.MailControler.MailToWebmaster(System.String,System.String,WebhostMySQLConnection.Web.ADUser)">
+            <summary>
+            Quick Mail To ME!
+            </summary>
+            <param name="Subject">Subject Line of the Email</param>
+            <param name="Message">Message Body of the Email in Plain Text!</param>
+            <param name="Sender">Pass in user here to send the email from the currently logged in user.</param>
+        </member>
+        <member name="M:WebhostMySQLConnection.Web.MailControler.PackForDownloading(System.Collections.Generic.List{System.String},System.String,System.Web.HttpServerUtility)">
+            <summary>
+            packs files into a zip file.
+            </summary>
+            <param name="FileNames">List of paths relative to ~/</param>
+            <param name="FileName">just the file name, no extension and no directory</param>
+            <param name="Server"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.Web.MailControler.MailToUser(System.String,System.String,WebhostMySQLConnection.Web.ADUser,System.String,System.String,System.String)">
+            <summary>
+            Generates a quick Email from the Webhost non-entity to the specified User.
+            </summary>
+            <param name="Subject">Subject Line of the Message</param>
+            <param name="Body">Message Body Plain Text</param>
+            <param name="User">Pass in user here to send mail to the logged in user</param>
+            <param name="SenderAddress">Address to send from</param>
+            <param name="SenderName">Display Name for the Sender</param>
+            <param name="AttachmentFileName">FileName of Attachment File</param>
+        </member>
+        <member name="M:WebhostMySQLConnection.Web.MailControler.MailToUser(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Generate a quick email to the specified address.
+            </summary>
+            <param name="Subject">Subject Line</param>
+            <param name="Body">Plain Text Body</param>
+            <param name="RecipientAddress">To Address</param>
+            <param name="RecipientName">To Name</param>
+            <param name="SenderAddress">Sender Address (default is the Webhost Bot)</param>
+            <param name="SenderName">Sender Name</param>
+            <param name="AttachmentFileName">Attachment (if applicable)</param>
+            <example>
+                To send an Email to the Dean of Students:
+                <code>MailControler.MailToUser("No Subject", "Boring Automated Message", MailControler.DeanOfStudents[0], MailControler.DeanOfStudents[1], "you@dublinschool.org", "Your Name");</code>
+            </example>
+        </member>
+        <member name="M:WebhostMySQLConnection.Web.MailControler.MailToUser(System.String,System.String,System.String,System.String,WebhostMySQLConnection.Web.ADUser,System.String)">
+            <summary>
+            Generate a quick email to the specified address.
+            </summary>
+            <param name="Subject">Subject Line</param>
+            <param name="Body">Plain Text Body</param>
+            <param name="RecipientAddress">To Address</param>
+            <param name="RecipientName">To Name</param>
+            <param name="User">Pass in user here to generate an email send by the logged in user.</param>
+            <param name="AttachmentFileName">Attachment (if applicable)</param>
+            <example>
+                To send an Email to the Dean of Students:
+                <code>MailControler.MailToUser("No Subject", "Boring Automated Message", MailControler.DeanOfStudents[0], MailControler.DeanOfStudents[1], user);</code>
+            </example>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.CommentLetter.ConvertFromBase64String(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.CommentLetter.Publish(System.String)">
+            <summary>
+            Make sure the rootPath ends with a \\ or / depending on context.
+            </summary>
+            <param name="rootPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.CommentLetter.ActiveStudents">
+            <summary>
+            Get students flagged as currently active.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.CommentLetter.ActiveStudents(System.Int32)">
+            <summary>
+            Get Students with classes active in the given Term.
+            </summary>
+            <param name="termid"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.DocumentSigningCertificate">
+            <summary>
+            Wrote this method when the EVO developers told me their API doesn't support 
+            accessing the LocalMachine certificate store.  This pulls the Certificate with 
+            FriendlyName "DocumentSigning" from the LocalMachine->Personal certificate store
+            and then converts it to an EVO DigitalCertificate object.
+            
+            As an intermediate step, the certificate must be exported as a PFX file.  This
+            is done every time the certificate is requested so that the PFX data is not persistent
+            anywhere in memory which could potentially be a security risk.
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.IsPrintable">
+            <summary>
+            Can recipients print this PDF?
+            
+            default value:  true
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.IsEditable">
+            <summary>
+            Can recipients edit data from this PDF?
+            
+            default value:  false
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.CanCopyContent">
+            <summary>
+            Can recipients Copy data from this pdf?
+            
+            default value:  false
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.BaseURL">
+            <summary>
+            base URL for linked documents like css or images.
+            Default constructor gives "https://webhost.dublinschool.org/"
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.HeaderImageURL">
+            <summary>
+            URL of the Dublin School letterhead image.
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.Title">
+            <summary>
+            The Title of the HTML document.
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.EVOPublishing.Letterhead.Metadata">
+            <summary>
+            Not Yet Implemented.  Will do this if I need to....
+            </summary>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.Letterhead.#ctor">
+            <summary>
+            Initialize a Letterhead Template object.  Contains standard Dublin School publication CSS styles.
+            </summary>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.Letterhead.PublishGenericLetter(System.String,System.Boolean,System.Int32)">
+            <summary>
+            Publishes a generic letter on School letterhead.  PDF protection options are set via the boolean properties of this object.
+            Document is digitally signed using a certificate generated by the local certificate authority in the dublinschool.org domain.
+            </summary>
+            <param name="bodyHtml">Body of the letter.</param>
+            <param name="signerId">Employee id of the Faculty who will put their signature on the document.  (automatically adds the signature image to the end of the document.</param>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.PublishRequest.RequestByClass(WebhostMySQLConnection.Web.ADUser,System.Collections.Generic.List{System.Int32},System.String,System.Int32)">
+            <summary>
+            Request a set of classes be published in bulk.
+            </summary>
+            <param name="user">requesting user</param>
+            <param name="SectionIds">List of Section.id's</param>
+            <param name="filename">file name given by the Server.MapPath() method.</param>
+            <param name="TermId">default to the current term</param>
+        </member>
+        <member name="M:WebhostMySQLConnection.EVOPublishing.PublishRequest.RequestByStudent(WebhostMySQLConnection.Web.ADUser,System.Collections.Generic.List{System.Int32},System.String,System.Int32)">
+            <summary>
+            Request a batch of Student's comments.
+            </summary>
+            <param name="user"></param>
+            <param name="StudentIds"></param>
+            <param name="filename">file name given by the Server.MapPath() method.</param>
+            <param name="TermId">default to the current term</param>
+        </member>
+        <member name="M:WebhostMySQLConnection.CSV.NotIn(WebhostMySQLConnection.CSV)">
+            <summary>
+            Get a CSV containing all the entries of this CSV which do not correspond to entries in the Other CSV.
+            </summary>
+            <param name="Other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.GetCurrentAcademicYear">
+            <summary>
+            Gets the current Academic Year.
+            Year break is 7 June, since Graduation is in the First Week of June at the latest.
+            By design, this is also the UniqueID for the Current Academic year Object in the Database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.GetCurrentOrLastTerm">
+            <summary>
+            Gets the currently active term (or the term that just ended, if no term is active.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.GetNextTerm">
+            <summary>
+            Get the id of the Next term.  If none exists returns -1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WebhostMySQLConnection.DateRange.ThisFriday">
+            <summary>
+            If it is the weekend, gets the Friday starting the weekend.
+            If it is NOT the weekend, gets the NEXT friday.
+            </summary>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.FridayOf(System.DateTime)">
+            <summary>
+            If date is on the weekend, gets the Friday starting that weekend.
+            Otherwise gets the NEXT Friday.
+            </summary>
+            <param name="date">Selected Date.</param>
+            <returns></returns>
+        </member>
+        <member name="F:WebhostMySQLConnection.DateRange.WeekendDays">
+            <summary>
+            Friday, Saturday, Sunday!
+            </summary>
+        </member>
+        <member name="F:WebhostMySQLConnection.DateRange.DaysOfWeek">
+            <summary>
+            Dictionary mapping Names of the days of the week to the Enum.
+            </summary>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.GetDateTimeFromString(System.String)">
+            <summary>
+            Convert a MM/DD/YYYY String to a DateTime Object.
+            </summary>
+            <param name="dateStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.GetCurrentWeekendId">
+            <summary>
+            Searches for the current (or next) weekend.
+            If no weekend is saved for that weekend, returns -1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.#ctor(System.DateTime,System.DateTime)">
+            <summary>
+            Represent a range of Dates from start to end, inclusively.
+            </summary>
+            <param name="Start"></param>
+            <param name="End"></param>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.GetDayOfWeek(System.String,System.Int32)">
+            <summary>
+            Gets a particular day of the week from the date range.
+            </summary>
+            <param name="day">Which day of the week.</param>
+            <param name="count">How many? (default: 1 -> First)</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.GetDayOfWeek(System.DayOfWeek,System.Int32)">
+            <summary>
+            Gets a particular day of the week from the date range.
+            </summary>
+            <param name="day">Which day of the week.</param>
+            <param name="count">How many? (default: 1 -> First)</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.Contains(System.DateTime)">
+            <summary>
+            Check to see if a given date is in this DateRange.
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.Intersects(System.DateTime,System.DateTime)">
+            <summary>
+            Check if this DateRange contains either of the endpoints,
+            or if this range is inbetween the given dates.
+            </summary>
+            <param name="StartDate"></param>
+            <param name="EndDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.Intersects(WebhostMySQLConnection.DateRange)">
+            <summary>
+            Checks if this DateRange contains some dates in another.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.ToList">
+            <summary>
+            Get a full listing of dates in this range.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.ToString">
+            <summary>
+            String of the form 
+            "MM/DD/YYYY ~ MM/DD/YYYY"
+            suitable for printing to Logs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.CompareTo(WebhostMySQLConnection.DateRange)">
+            <summary>
+            Only Able to compare obj of type DateRange.
+            
+            if one date-range is a subset of the other, returns zero.
+            returns -1 if THIS range is earlier than OTHER,
+            returns 1 if THIS range comes after OTHER.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.MoveByMinutes(System.Int32)">
+            <summary>
+            Adds the given number of minutes to both the start and end times.
+            Returns the result as a new instance of a DateRange
+            </summary>
+            <param name="minutes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.MoveByHours(System.Int32)">
+            <summary>
+            Adds the given number of hours to both the start and end times.
+            Returns the result as a new instance of a DateRange
+            </summary>
+            <param name="minutes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.DateRange.MoveByDays(System.Int32)">
+            <summary>
+            Adds the given number of days to both the start and end times.
+            Returns the result as a new instance of a DateRange
+            </summary>
+            <param name="minutes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebhostMySQLConnection.WebhostEventLog">
+            <summary>
+            Database Interaction Event Log
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.XMLTree.ChildTrees">
+            <summary>
+            Sub-Trees of this tree.
+            </summary>
+        </member>
+        <member name="P:WebhostMySQLConnection.XMLTree.ChildNodes">
+            <summary>
+            All the leaves at this branch of the tree.
+            </summary>
+        </member>
+        <member name="M:WebhostMySQLConnection.XMLTree.Search(System.String)">
+            <summary>
+            Recursive search of the XMLTree for a given tag.
+            Result:
+            
+            &lt;result&gt; DATA &lt;/result&gt;
+            
+            
+            </summary>
+            <param name="tagname"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebhostMySQLConnection.XMLTree.Save(System.String,System.IO.FileMode)">
+            <summary>
+            Save the XMLTree to an XML file.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:WebhostMySQLConnection.XMLTree.#ctor">
+            <summary>
+            Create an empty XMLTree.
+            </summary>
+        </member>
+        <member name="M:WebhostMySQLConnection.XMLTree.#ctor(System.String)">
+            <summary>
+            Build an XMLTree from an XML formatted string.
+            </summary>
+            <param name="xml"></param>
+        </member>
+    </members>
+</doc>

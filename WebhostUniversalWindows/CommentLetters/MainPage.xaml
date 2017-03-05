@@ -1,0 +1,46 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CommentLetters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:RichTextBoxAdv="using:Syncfusion.UI.Xaml.RichTextBoxAdv"
+    x:Class="CommentLetters.MainPage"
+    mc:Ignorable="d">
+
+    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" Source="Assets/logo-blue.png"/>
+        <StackPanel Grid.Column="0" Grid.Row="1" Padding="5">
+            <TextBlock x:Name="UserNameDisplay" Text="Loading User Information..." SelectionHighlightColor="{x:Null}" TextAlignment="Center" FontSize="18" FontWeight="Bold"/>
+            <StackPanel x:Name="ClassSelectPanel" BorderThickness="0,2" BorderBrush="Black"/>
+
+            <TextBlock x:Name="StudentLabel" Text="Students" TextAlignment="Center" FontSize="18" FontWeight="Bold" Visibility="Collapsed" SelectionHighlightColor="{x:Null}"/>
+            <StackPanel x:Name="StudentSelectPanel" Orientation="Vertical" BorderThickness="0,2" BorderBrush="Black"/>
+        </StackPanel>
+        <Grid x:Name="ControlPanel" Grid.Column="1" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="ClassNameBox" Text="" SelectionHighlightColor="{x:Null}" FontSize="22" FontWeight="Bold" Grid.Row="0"/>
+            <TextBlock x:Name="StudentNameBox" Text="" SelectionHighlightColor="{x:Null}" FontSize="22" FontWeight="Bold" Grid.Row="1"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+                <Button Content="Save" x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click"/>
+                <Button x:Name="button" Content="Log Out" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,28,20,0" Click="button_Click_1"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel x:Name="WorkPanel" Grid.Column="1" Grid.Row="1">
+            <RichTextBoxAdv:SfRichTextBoxAdv Visibility="Collapsed"  x:Name="EditorBox" Margin="5" Height="450" ManipulationMode="All" Canvas.ZIndex="1"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

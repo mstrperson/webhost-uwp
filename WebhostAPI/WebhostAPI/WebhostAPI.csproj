@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D78598E5-98BF-4164-88D3-E2A60B996E0C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebhostAPI</RootNamespace>
+    <AssemblyName>WebhostAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>App_Data/XmlDocument.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="evohtmltopdf, Version=6.16.0.0, Culture=neutral, PublicKeyToken=e1fcbb86597de299, processorArchitecture=MSIL">
+      <HintPath>..\packages\evopdf.6.16\lib\net40\evohtmltopdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.5\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.Automation.6.1.7601.17515\lib\net45\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcademicYear.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApiPermission.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApiPermissionGroup.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApiRequestHeader.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="APRequest.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="AttendanceMarking.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceStatu.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceSubmissionStatu.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Block.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentHeader.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\CommentAdminController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublishedCommentsController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UtilityController.cs" />
+    <Compile Include="Controllers\WeekendSignupController.cs" />
+    <Compile Include="Course.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CourseRequest.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CourseRequestComment.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Credit.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dorm.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DutyTeam.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExternalApi.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Faculty.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Filters\WebhostAuthenticationFilter.cs" />
+    <Compile Include="Filters\WebhostAuthorizationAttribute.cs" />
+    <Compile Include="Fingerprint.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GoogleCalendar.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GradeTable.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GradeTableEntry.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LibraryPass.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebhostUserPrinciple.cs" />
+    <Compile Include="Permission.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Preference.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationRequest.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestableCourse.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestHandlers\ADUser.cs" />
+    <Compile Include="RequestHandlers\AttendanceInfo.cs" />
+    <Compile Include="RequestHandlers\AuthenticationInfo.cs" />
+    <Compile Include="RequestHandlers\CommentHeaderInfo.cs" />
+    <Compile Include="RequestHandlers\CommentLetter.cs" />
+    <Compile Include="RequestHandlers\CommentReviewPDF.cs" />
+    <Compile Include="RequestHandlers\CSV.cs" />
+    <Compile Include="RequestHandlers\DateRange.cs" />
+    <Compile Include="RequestHandlers\Letterhead.cs" />
+    <Compile Include="RequestHandlers\MailControler.cs" />
+    <Compile Include="RequestHandlers\NewFacultyAccountLetter.cs" />
+    <Compile Include="RequestHandlers\NewStudentRegistrationLetter.cs" />
+    <Compile Include="RequestHandlers\PublishRequest.cs" />
+    <Compile Include="RequestHandlers\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RequestHandlers\SectionInfo.cs" />
+    <Compile Include="RequestHandlers\SimpleXMLTag.cs" />
+    <Compile Include="RequestHandlers\StudentCommentInfo.cs" />
+    <Compile Include="RequestHandlers\StudentInfo.cs" />
+    <Compile Include="RequestHandlers\TeacherInfo.cs" />
+    <Compile Include="RequestHandlers\WebhostEventLog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RequestHandlers\WebhostException.cs" />
+    <Compile Include="RequestHandlers\WeekendActivityInfo.cs" />
+    <Compile Include="RequestHandlers\XMLException.cs" />
+    <Compile Include="RequestHandlers\XMLTree.cs" />
+    <Compile Include="SeatingChart.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatingChartSeat.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Section.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAccount.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Student.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentCalendarSpecialPermission.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentComment.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentSignup.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Term.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeStampedSignature.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Variable.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebhostDatabase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebhostDatabase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebhostDatabase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebhostDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebhostDatabase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPage.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebPageTag.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WednesdaySchedule.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Weekend.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeekendActivity.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeekendActivityCategory.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeekendDiscipline.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeekendDuty.cs">
+      <DependentUpon>WebhostDatabase.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Ionic.Zip.xml" />
+    <None Include="Properties\PublishProfiles\Webhost API.pubxml" />
+    <None Include="Resources\DigitalSignatureImage.png" />
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="WebhostDatabase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebhostDatabase.edmx</DependentUpon>
+      <LastGenOutput>WebhostDatabase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="WebhostDatabase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebhostDatabase.edmx</DependentUpon>
+      <LastGenOutput>WebhostDatabase.cs</LastGenOutput>
+    </Content>
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <EntityDeploy Include="WebhostDatabase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WebhostDatabase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="WebhostDatabase.edmx.diagram">
+      <DependentUpon>WebhostDatabase.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RequestHandlers\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52693</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52693/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
